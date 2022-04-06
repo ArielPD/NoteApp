@@ -1,0 +1,9 @@
+version: 0.0
+os: linux
+files:
+  - source: NoteApp-0.0.1.jar
+    destination: /var/opt/app
+
+hooks:
+  ApplicationStart:
+    - location: deploy-app.sh
