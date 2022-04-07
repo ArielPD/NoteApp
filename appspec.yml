@@ -1,9 +1,18 @@
 version: 0.0
 os: linux
 files:
-  - source: NoteApp-0.0.1.jar
-    destination: /home/ec2-user
-
+  - source: /index.html
+    destination: /var/www/html/
 hooks:
-  ApplicationStart:
-    - location: deploy-app.sh
+  BeforeInstall:
+    - location: scripts/install_dependencies
+      timeout: 300
+      runas: root
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
+
